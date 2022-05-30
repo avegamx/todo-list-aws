@@ -32,7 +32,7 @@ class TestDatabaseFunctions(unittest.TestCase):
 
         from src.todoList import create_todo_table
         self.table = create_todo_table(self.dynamodb)
-        #self.table_local = create_todo_table()
+        self.table_local = create_todo_table()
         print ('End: setUp')
 
     def tearDown(self):
@@ -41,7 +41,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         """Delete mock database and table after test is run"""
         self.table.delete()
         print ('Table deleted succesfully')
-        #self.table_local.delete()
+        self.table_local.delete()
         self.dynamodb = None
         print ('End: tearDown')
 
