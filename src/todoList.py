@@ -9,7 +9,7 @@ from botocore.exceptions import ClientError
 
 def get_table(dynamodb=None):
     print("Valor dynamodb: ", dynamodb)
-    print("dynamodb: ", dynamodb.ServiceResource())
+    print("dynamodb: ", dynamodb.print)
     print("endpoint_override: ", os.environ['ENDPOINT_OVERRIDE'])
     if not dynamodb:
         URL = os.environ['ENDPOINT_OVERRIDE']
