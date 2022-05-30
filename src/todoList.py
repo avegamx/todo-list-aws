@@ -10,8 +10,8 @@ from botocore.exceptions import ClientError
 def get_table(dynamodb=None):
     print("Valor dynamodb: ", dynamodb)
     print("endpoint_override: ", os.environ['ENDPOINT_OVERRIDE'])
-    temp = dynamodb
-    dynamodb = None
+    # temp = dynamodb
+    # dynamodb = None
     if not dynamodb:
         URL = os.environ['ENDPOINT_OVERRIDE']
         print("URL: ", URL)
@@ -22,7 +22,7 @@ def get_table(dynamodb=None):
                                                endpoint_url=URL)
         dynamodb = boto3.resource("dynamodb", region_name='us-east-1')
     # fetch todo from the database
-    dynamodb = temp
+    # dynamodb = temp
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
     return table
 
