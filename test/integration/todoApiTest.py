@@ -200,5 +200,3 @@ class TestApi(unittest.TestCase):
         )
         print('End - integration test Delete TODO')
     
-    def test_raise_error(self):
-        raise AssertionError()
