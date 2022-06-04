@@ -152,8 +152,8 @@ def create_todo_table(dynamodb):
         raise AssertionError()
 
     return table
-    
-    
+
+
 def get_translate(key, lg, dynamodb=None):
     table = get_table(dynamodb)
     # translate content
