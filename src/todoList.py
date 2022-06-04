@@ -153,22 +153,17 @@ def create_todo_table(dynamodb):
 
     return table
     
-    
 def get_translate(key, lg, dynamodb=None):
     table = get_table(dynamodb)
     # translate content
     try:
-        print("debugging: ", table)
-        translate = boto3.client(service_name='translate', 
-                    region_name='us-east-1', use_ssl=True
-                )
-        print("debugging: after translate: ", translate )
+        translate = boto3.client(service_name='translate',
+                    region_name='us-east-1', use_ssl=True)
         result = table.get_item(
             Key={
                 'id': key
             }
         )
-        print("debugging, after result: ", result)
         traduccion = translate.translate_text(Text=result['Item']['text'],
                                                SourceLanguageCode='auto',
                                                TargetLanguageCode=lg)
