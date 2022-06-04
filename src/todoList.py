@@ -159,15 +159,15 @@ def get_translate(key, lg, dynamodb=None):
     # translate content
     try:
         translate = boto3.client(service_name='translate',
-                    region_name='us-east-1', use_ssl=True)
+                                 region_name='us-east-1', use_ssl=True)
         result = table.get_item(
             Key={
                 'id': key
             }
         )
         traduccion = translate.translate_text(Text=result['Item']['text'],
-                                               SourceLanguageCode='auto',
-                                               TargetLanguageCode=lg)
+                                              SourceLanguageCode='auto',
+                                              TargetLanguageCode=lg)
         print(traduccion)
         result['Item']["text"] = traduccion.get('TranslatedText')
 
