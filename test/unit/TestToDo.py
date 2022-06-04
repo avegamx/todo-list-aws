@@ -219,7 +219,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('Response put_item:' + str(response))
         
         id = json.loads(response['body'])['id']
-        responseGet = get_transalte(id, 'en', self.dynamodb)
+        responseGet = get_translate(id, 'en', self.dynamodb)
         print ('Response Translate:' + responseGet)
         self.assertEqual(
             self.text,
