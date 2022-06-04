@@ -206,9 +206,25 @@ class TestDatabaseFunctions(unittest.TestCase):
         from src.todoList import get_table
         table = get_table(None)
         print ('Table name:' +table.name)
-        print ('End: test_get_table')        
-
-
+        print ('End: test_get_table')
+    
+    def test_get_translate(self):
+        print ('---------------------')
+        print ('Start: test_translate')
+        from src.todoList import get_translate
+        from src.todoList import put_item
+        
+        response = put_item(self.text, self.dynamodb)
+        print ('Response put_item:' + str(response))
+        
+        id = json.loads(response['body'])['id']
+        responseGet = get_transalte(id, 'en', self.dynamodb)
+        print ('Response Translate:' + responseGet)
+        self.assertEqual(
+            self.text,
+            responseGet['text'])
+        print ('End: test_translate')  
+        
 
 if __name__ == '__main__':
     unittest.main()
