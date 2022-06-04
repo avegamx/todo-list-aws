@@ -153,6 +153,7 @@ def create_todo_table(dynamodb):
 
     return table
     
+    
 def get_translate(key, lg, dynamodb=None):
     table = get_table(dynamodb)
     # translate content
@@ -169,7 +170,7 @@ def get_translate(key, lg, dynamodb=None):
                                                TargetLanguageCode=lg)
         print(traduccion)
         result['Item']["text"] = traduccion.get('TranslatedText')
-    
+
     except ClientError as e:
         print(e.response['Error']['Message'])
     else:
