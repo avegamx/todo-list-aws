@@ -231,10 +231,10 @@ class TestApi(unittest.TestCase):
             json_response['text'], "Integration text example - GET", "Error en la petición API a {url}"
         )
         #Test TRANSLATE TODO
-        url = BASE_URL+"/todos/"+ID_TODO+"/en"
+        url = BASE_URL+"/todos/"+ID_TODO+"/fr"
         response = requests.get(url)
         json_response = response.json()
-        print('Response Get Todo: '+ str(json_response))
+        print('Response Translate Todo: '+ str(json_response))
         self.assertEqual(
             response.status_code, 200, "Error en la petición API a {url}"
         )
@@ -242,6 +242,7 @@ class TestApi(unittest.TestCase):
             json_response['text'], "Integration text example - GET", "Error en la petición API a {url}"
         )
         #Delete TODO to restore state
+        url = BASE_URL+"/todos/"+ID_TODO
         response = requests.delete(url)
         self.assertEqual(
             response.status_code, 200, "Error en la petición API a {url}"
