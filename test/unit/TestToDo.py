@@ -199,7 +199,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         # Testing file functions
         self.assertRaises(TypeError, delete_item("", self.dynamodb))
         print ('End: test_delete_todo_error')
-
+        
     def test_get_table(self):
         print ('---------------------')
         print ('Start: test_get_table')
@@ -207,7 +207,24 @@ class TestDatabaseFunctions(unittest.TestCase):
         table = get_table(None)
         print ('Table name:' +table.name)
         print ('End: test_get_table')   
+   
 
-
+    def test_get_translate(self):
+        print ('---------------------')
+        print ('Start: test_translate')
+        from src.todoList import get_translate
+        from src.todoList import put_item
+        
+        response = put_item(self.text, self.dynamodb)
+        print ('Response put_item:' + str(response))
+        
+        id = json.loads(response['body'])['id']
+        responseGet = get_transalte(id, 'en', self.dynamodb)
+        print ('Response Translate:' + responseGet)
+        self.assertEqual(
+            self.text,
+            responseGet['text'])
+        print ('End: test_translate')  
+        
 if __name__ == '__main__':
     unittest.main()
